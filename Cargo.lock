@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "GNU-Coreutils"
+name = "GNU_Coreutils"
 version = "0.1.0"
