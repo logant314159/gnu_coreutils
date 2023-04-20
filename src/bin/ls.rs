@@ -1,5 +1,6 @@
 use std::fs;
 
+/// Returns a Vec<String> of the items in the current working directory.
 fn raw_list() -> Vec<String> {
     let mut list = Vec::new();
 
