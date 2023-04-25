@@ -52,8 +52,8 @@ fn get_dir_entries_with_type(path: Option<&str>) -> Vec<(String, EntryType)> {
 fn print_entries(entries: Vec<(String, EntryType)>) {
     for entry in entries {
         match entry.1 {
-            EntryType::Dir => println!("{}", entry.0.blue()),
-            EntryType::Error => println!("{}", entry.0.red()),
+            EntryType::Dir => println!("{}/", entry.0.blue()),
+            EntryType::Error => println!("{}@", entry.0.red()),
             EntryType::File => println!("{}", entry.0)
         }
     }
