@@ -1,4 +1,4 @@
-use std::fs::{self, Metadata};
+use std::fs;
 
 extern crate colored;
 
