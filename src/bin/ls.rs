@@ -1,5 +1,9 @@
 use std::fs::{self, Metadata};
 
+extern crate colored;
+
+use colored::*;
+
 /// The three types of entries ls will differentiate between.
 enum EntryType {
     Dir,
@@ -44,10 +48,22 @@ fn get_dir_entries_with_type(path: Option<&str>) -> Vec<(String, EntryType)> {
     list
 }
 
+/// Prints Vec<(String, EntryType)> items colored by type to the console.
+fn print_entries(entries: Vec<(String, EntryType)>) {
+    for entry in entries {
+        match entry.1 {
+            EntryType::Dir => println!("{}", entry.0.blue()),
+            EntryType::Error => println!("{}", entry.0.red()),
+            EntryType::File => println!("{}", entry.0)
+        }
+    }
+}
+
 fn main() {
     // Parse flags, if any.
 
     // If no flags:
+    print_entries(get_dir_entries_with_type(None));
 
     // If flags:
     //     Act accordingly.
