@@ -19,9 +19,9 @@ fn parse_args() -> Vec<String> {
 }
 
 /// Returns a Vec<(String, EntryType)> of the item names in the current working directory accompanied by their type.
-fn get_dir_entries_with_type(path: Option<&str>) -> Vec<(String, EntryType)> {
+fn get_dir_entries_with_type(path: Option<String>) -> Vec<(String, EntryType)> {
     // If no path is provided, use the current working directory.
-    let path_str = path.unwrap_or(".");
+    let path_str = path.unwrap_or(".".to_string());
 
     let mut list = Vec::new();
 
@@ -67,8 +67,15 @@ fn print_entries(entries: Vec<(String, EntryType)>) {
 }
 
 fn main() {
+    let mut path = None;
     let args = parse_args();
-    if args.is_empty() { // If no arguments are provided, print the entries from the current working directory.
-        print_entries(get_dir_entries_with_type(None));
+
+    let mut counter = 0;
+    while counter < args.len() {
+        if counter == 0 && !args[counter].starts_with('-') { path = Some(args[0].clone().to_string()); }
+
+        counter += 1;
     }
+
+    print_entries(get_dir_entries_with_type(path));
 }
