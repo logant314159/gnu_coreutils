@@ -11,6 +11,13 @@ enum EntryType {
     Error
 }
 
+/// Parse command line arguments.
+fn parse_args() -> Vec<String> {
+    let mut args = std::env::args();
+    args.next(); // Skip the first argument, which is the program name.
+    args.collect() // Return a Vec<String> of the arguments.
+}
+
 /// Returns a Vec<(String, EntryType)> of the item names in the current working directory accompanied by their type.
 fn get_dir_entries_with_type(path: Option<&str>) -> Vec<(String, EntryType)> {
     // If no path is provided, use the current working directory.
@@ -60,11 +67,8 @@ fn print_entries(entries: Vec<(String, EntryType)>) {
 }
 
 fn main() {
-    // Parse flags, if any.
-
-    // If no flags:
-    print_entries(get_dir_entries_with_type(None));
-
-    // If flags:
-    //     Act accordingly.
+    let args = parse_args();
+    if args.is_empty() { // If no arguments are provided, print the entries from the current working directory.
+        print_entries(get_dir_entries_with_type(None));
+    }
 }
