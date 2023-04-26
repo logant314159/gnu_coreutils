@@ -27,7 +27,7 @@ fn get_dir_entries_with_type(path: Option<String>) -> Vec<(String, EntryType)> {
 
     // Iterate over the directory entries and return a Vec<String> of the items in the directory accompanied by their type.
     // This hurts my soul, imma do my best to explain it. I LOVE Result<T>, I LOOOOVE Result<T>!!!!!!
-    match fs::read_dir(path_str) {
+    match fs::read_dir(path_str) { // TODO: Refactor this for the love of god.
         Err(e) => list.push((format!("{:?}", e), EntryType::Error)), // If it errors out in the beginning, return an error.
         Ok(entries_iterator) => {
             for entry in entries_iterator {
