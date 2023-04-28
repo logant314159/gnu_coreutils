@@ -50,7 +50,7 @@ fn get_dir_entries_with_type(path: Option<String>) -> Vec<(String, EntryType)> {
 }
 
 /// Prints Vec<(String, EntryType)> items colored by type to the console.
-fn print_entries(entries: &Vec<(String, EntryType)>, args: &Vec<String>) {
+fn print_entries(entries: &Vec<(String, EntryType)>, args: &[String]) {
     for entry in entries {
         if entry.0.starts_with('.') && !args.contains(&String::from("-a")) { continue; } // Skip any entries that start with a period.
         match entry.1 {
