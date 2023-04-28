@@ -1,4 +1,5 @@
 use std::fs;
+use gnu_coreutils::common;
 
 extern crate colored;
 
@@ -9,13 +10,6 @@ enum EntryType {
     Dir,
     File,
     Error
-}
-
-/// Parse command line arguments.
-fn parse_args() -> Vec<String> {
-    let mut args = std::env::args();
-    args.next(); // Skip the first argument, which is the program name.
-    args.collect() // Return a Vec<String> of the arguments.
 }
 
 /// Returns a Vec<(String, EntryType)> of the item names in the current working directory accompanied by their type.
@@ -69,7 +63,7 @@ fn print_entries(entries: &Vec<(String, EntryType)>, args: &Vec<String>) {
 
 fn main() {
     let mut path = None;
-    let args = parse_args();
+    let args = common::parse_args();
 
     let mut counter = 0;
     while counter < args.len() {
