@@ -77,5 +77,7 @@ fn main() {
         counter += 1;
     }
 
-    print_entries(get_dir_entries_with_type(path));
+    let entry_list = get_dir_entries_with_type(path);
+
+    print_entries(entry_list);
 }
